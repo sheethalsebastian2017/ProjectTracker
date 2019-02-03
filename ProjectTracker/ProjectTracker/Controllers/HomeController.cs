@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,18 +14,26 @@ namespace ProjectTracker.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult YourActivity()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your Activity description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Settings()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your Settings page.";
 
             return View();
         }
+
+        public ActionResult Projects()
+        {
+            ViewBag.Message = "Your Projects page.";
+
+            return View();
+        }
+
     }
 }

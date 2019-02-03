@@ -26,26 +26,26 @@ namespace ProjectTracker.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
+        public void YourActivity()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            ViewResult result = controller.YourActivity() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Your Activity description page.", result.ViewBag.Message);
         }
 
         [TestMethod]
-        public void Contact()
+        public void Settings()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            ViewResult result = controller.Settings() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
