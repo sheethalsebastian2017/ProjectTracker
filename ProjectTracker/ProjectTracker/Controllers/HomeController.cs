@@ -11,15 +11,26 @@ namespace ProjectTracker.Controllers
     
     public class HomeController : Controller
     {
+        private const string Sql = "UpdateYourActivity SET Credits = Credits * {0}";
+        private DbModel db = new DbModel();
+
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult YourActivity()
+        public ActionResult UpdateYourActivity()
         {
-            ViewBag.Message = "Your Activity description page.";
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult UpdateYourActivity(int? multiplier)
+        {
+            if (multiplier != null)
+            {
+                ViewBag.RowsAffected = db.Database.ExecuteSqlCommand(Sql, multiplier);
+            }
             return View();
         }
 
@@ -30,17 +41,11 @@ namespace ProjectTracker.Controllers
             return View();
         }
 
+       
         public ActionResult Projects()
         {
-            var projects = new List<Project>();
 
-            for (int i = 1; i <=10; i++)
-
-            {
-                Project project = new Project();
-                project.Name = "Project" + i.ToString();
-                projects.Add(project);
-            }
+            var projects = db.Projects.ToList();
 
             return View(projects);
         }
@@ -48,6 +53,7 @@ namespace ProjectTracker.Controllers
         public ActionResult ViewProject(String ProjectName)
         {
             ViewBag.ProjectName = ProjectName;
+
             return View();
         }
 

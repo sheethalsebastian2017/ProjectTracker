@@ -26,19 +26,8 @@ namespace ProjectTracker.Tests.Controllers
         }
 
         [TestMethod]
-        public void YourActivity()
-        {
-            // Arrange
-            HomeController controller = new HomeController();
-
-            // Act
-            ViewResult result = controller.YourActivity() as ViewResult;
-
-            // Assert
-            Assert.AreEqual("Your Activity description page.", result.ViewBag.Message);
-        }
-
-        [TestMethod]
+       
+        
         public void Settings()
         {
             // Arrange
