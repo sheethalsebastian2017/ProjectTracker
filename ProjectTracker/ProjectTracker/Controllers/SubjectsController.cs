@@ -10,6 +10,7 @@ using ProjectTracker.Models;
 
 namespace ProjectTracker.Controllers
 {
+    [Authorize]
     public class SubjectsController : Controller
     {
         private DbModel db = new DbModel();

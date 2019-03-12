@@ -31,11 +31,14 @@
                     </div>
                 </form>
 
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    @if (Request.IsAuthenticated)
+                    {
                         <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
-                        <li>@Html.ActionLink("Subjects", "Index", "Subjects")</li>
-                    </ul>
+                    }
+                    <li>@Html.ActionLink("Subjects", "Index", "Subjects")</li>
+                </ul>
                     @Html.Partial("_LoginPartial")
 </div>
         </div>

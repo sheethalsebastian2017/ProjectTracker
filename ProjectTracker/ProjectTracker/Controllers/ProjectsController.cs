@@ -10,10 +10,13 @@ using ProjectTracker.Models;
 
 namespace ProjectTracker.Controllers
 {
+
+    [Authorize]
     public class ProjectsController : Controller
     {
         private DbModel db = new DbModel();
 
+        [AllowAnonymous]
         // GET: Projects
         public ActionResult Index()
         {
