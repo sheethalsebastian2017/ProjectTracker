@@ -11,7 +11,7 @@ using ProjectTracker.Models;
 namespace ProjectTracker.Controllers
 {
 
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class ProjectsController : Controller
     {
         private DbModel db = new DbModel();
