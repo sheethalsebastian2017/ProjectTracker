@@ -51,9 +51,9 @@ namespace ProjectTracker
             //    clientId: "",
             //    clientSecret: "");
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+            app.UseTwitterAuthentication(
+               consumerKey: ConfigurationManager.AppSettings["TwitterConsumerKey"],
+               consumerSecret: ConfigurationManager.AppSettings["TwitterConsumerSecret"]);
 
             app.UseFacebookAuthentication(
                appId: ConfigurationManager.AppSettings["FacebookAppId"],
