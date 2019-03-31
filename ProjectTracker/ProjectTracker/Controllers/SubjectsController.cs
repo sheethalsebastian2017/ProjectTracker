@@ -13,12 +13,28 @@ namespace ProjectTracker.Controllers
     [Authorize(Roles = "Administrator")]
     public class SubjectsController : Controller
     {
-        private DbModel db = new DbModel();
+        //private DbModel db = new DbModel();
+
+        IMockSubjects db;
+        // Constructors
+        // default constructor: no input params => use SQL Server & Entity Framework
+
+
+        public SubjectsController()
+        {
+            this.db = new IDataSubjects();
+        }
+
+
+        public SubjectsController(IMockSubjects mockDb)
+        {
+            this.db = mockDb;
+        }
 
         // GET: Subjects
         public ActionResult Index()
         {
-            return View(db.Subjects.ToList());
+            return View("Index", db.Subjects.ToList());
         }
 
         // GET: Subjects/Details/5
@@ -28,7 +44,8 @@ namespace ProjectTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subject subject = db.Subjects.Find(id);
+            //Subject subject = db.Subjects.Find(id);
+            Subject subject = db.Subjects.SingleOrDefault(c => c.SubjectId == id);
             if (subject == null)
             {
                 return HttpNotFound();
@@ -51,8 +68,9 @@ namespace ProjectTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Subjects.Add(subject);
-                db.SaveChanges();
+                // db.Subjects.Add(subject);
+                // db.SaveChanges();
+                db.Save(subject);
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +84,8 @@ namespace ProjectTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subject subject = db.Subjects.Find(id);
+            //Subject subject = db.Subjects.Find(id);
+            Subject subject = db.Subjects.SingleOrDefault(c => c.SubjectId == id);
             if (subject == null)
             {
                 return HttpNotFound();
@@ -83,8 +102,9 @@ namespace ProjectTracker.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(subject).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(subject).State = EntityState.Modified;
+                //db.SaveChanges();
+                db.Save(subject);
                 return RedirectToAction("Index");
             }
             return View(subject);
@@ -97,7 +117,8 @@ namespace ProjectTracker.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Subject subject = db.Subjects.Find(id);
+            //Subject subject = db.Subjects.Find(id);
+            Subject subject = db.Subjects.SingleOrDefault(c => c.SubjectId == id);
             if (subject == null)
             {
                 return HttpNotFound();
@@ -110,9 +131,11 @@ namespace ProjectTracker.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Subject subject = db.Subjects.Find(id);
-            db.Subjects.Remove(subject);
-            db.SaveChanges();
+            //Subject subject = db.Subjects.Find(id);
+            Subject subject = db.Subjects.SingleOrDefault(c => c.SubjectId == id);
+            //db.Subjects.Remove(subject);
+            //db.SaveChanges();
+            db.Delete(subject);
             return RedirectToAction("Index");
         }
 

@@ -16,7 +16,7 @@ namespace ProjectTracker.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
       
@@ -37,14 +37,18 @@ namespace ProjectTracker.Controllers
             return View();
         }
 
-        public ViewResult UpdateYourActivity()
+        public ActionResult UpdateYourActivity()
         {
-            throw new NotImplementedException();
+           ViewBag.Message = "Your Activity description page";
+
+            return View("UpdateYourActivity");
         }
 
         public ViewResult Settings()
         {
-            throw new NotImplementedException();
+            ViewBag.Message = "Your application description page";
+
+            return View();
         }
     }
 

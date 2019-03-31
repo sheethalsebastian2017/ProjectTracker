@@ -23,9 +23,11 @@ namespace ProjectTracker.Tests.Controllers
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.AreEqual("Index", result.ViewName);
         }
 
         [TestMethod]
+
         public void UpdateYourActivity()
         {
             // Arrange
@@ -35,7 +37,21 @@ namespace ProjectTracker.Tests.Controllers
             ViewResult result = controller.UpdateYourActivity() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your Activity description page.", result.ViewBag.Message);
+            Assert.AreEqual("Your Activity description page", result.ViewBag.Message);
+        }
+
+        [TestMethod]
+
+        public void UpdateYourActivityLoadsView()
+        {
+            // Arrange
+            HomeController controller = new HomeController();
+
+            // Act
+            ViewResult result = controller.UpdateYourActivity() as ViewResult;
+
+            // Assert
+            Assert.AreEqual("Your Activity description page", result.ViewBag.Message);
         }
 
         [TestMethod]
