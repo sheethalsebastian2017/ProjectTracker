@@ -171,7 +171,7 @@ namespace ProjectTracker.Tests.Controllers
 
         public void EditPostModelViewLoads()
         {
-            controller.ModelState.AddModelError("Description", "error");
+            controller.ModelState.AddModelError("Explanation", "error details");
 
             // act
 
@@ -199,15 +199,15 @@ namespace ProjectTracker.Tests.Controllers
 
         public void PostEditViewBag()
         {
-            controller.ModelState.AddModelError("Description", "error");
+            controller.ModelState.AddModelError("Explanation", "error details");
 
             // act
 
-            SelectList result = (controller.Edit(1) as ViewResult).ViewBag.SubjectId;
+            SelectList value = (controller.Edit(1) as ViewResult).ViewBag.SubjectId;
 
             // assert
 
-            Assert.AreEqual(1, result.SelectedValue);
+            Assert.AreEqual(1, value.SelectedValue);
         }
 
 
