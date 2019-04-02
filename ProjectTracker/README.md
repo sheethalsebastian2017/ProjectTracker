@@ -9,6 +9,8 @@ This project contains register and login functionalities for the users. it also 
 
 <p>Bonus activity - This project enable Social Authentication with both facebook and twitter.</p>
 
+<p>Adding Unit Test</p>
+
 <p>Bootstrap Slate theme from <a href="https://bootswatch.com/3/slate/">https://bootswatch.com/3/slate/</a></p>
 <p> git link <a href ="https://github.com/sheethalsebastian2017/ProjectTracker/tree/master/ProjectTracker/ "</a>https://github.com/sheethalsebastian2017/ProjectTracker/tree/master/ProjectTracker/ </p>
 <p> Azure link <a href ="https://projectreview.azurewebsites.net/"</a>https://projectreview.azurewebsites.net/</p>
