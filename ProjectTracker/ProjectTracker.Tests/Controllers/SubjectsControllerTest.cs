@@ -34,10 +34,21 @@ namespace ProjectTracker.Tests.Controllers
             // set up & populate our mock object to inject into our controller
             mock = new Mock<IMockSubjects>();
             mock.Setup(c => c.Subjects).Returns(subjects.AsQueryable());
-            mock.Setup(c => c.Subjects).Returns(subjects.AsQueryable());
+           
 
             // initialize the controller and inject the mock object
             controller = new SubjectsController(mock.Object);
+        }
+
+        [TestMethod]
+
+        public void IndexLoadsSubjects()
+        {
+            var value = (List<Subject>)((ViewResult)controller.Index()).Model;
+
+            //assert
+
+            CollectionAssert.AreEqual(subjects, value);
         }
 
 
@@ -189,6 +200,7 @@ namespace ProjectTracker.Tests.Controllers
         public void PostEditViewBag()
         {
             controller.ModelState.AddModelError("Description", "error");
+
             // act
 
             SelectList result = (controller.Edit(1) as ViewResult).ViewBag.SubjectId;
@@ -286,4 +298,6 @@ namespace ProjectTracker.Tests.Controllers
     }
 
 }
+
+
 
