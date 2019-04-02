@@ -17,26 +17,26 @@ namespace ProjectTracker.Controllers
 
         IMockSubjects db;
         // Constructors
-        // default constructor: no input params => use SQL Server & Entity Framework
-
-
         public SubjectsController()
         {
             this.db = new IDataSubjects();
         }
 
-
         public SubjectsController(IMockSubjects mockDb)
         {
             this.db = mockDb;
         }
+        // default constructor: no input params => use SQL Server & Entity Framework
+
 
         // GET: Subjects
         public ActionResult Index()
         {
             return View("Index", db.Subjects.ToList());
+    
         }
 
+      
         // GET: Subjects/Details/5
         public ActionResult Details(int? id)
         {
@@ -50,20 +50,24 @@ namespace ProjectTracker.Controllers
             {
                 return HttpNotFound();
             }
-            return View(subject);
+            return View("Details", subject);
         }
 
+       
         // GET: Subjects/Create
         public ActionResult Create()
         {
-            return View();
+            return View("Create");
         }
 
         // POST: Subjects/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+       
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "SubjectId,SubjectName,DueDates,Rubric")] Subject subject)
         {
             if (ModelState.IsValid)
@@ -71,13 +75,15 @@ namespace ProjectTracker.Controllers
                 // db.Subjects.Add(subject);
                 // db.SaveChanges();
                 db.Save(subject);
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(subject);
         }
 
+        
         // GET: Subjects/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -90,12 +96,14 @@ namespace ProjectTracker.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.SubjectId = new SelectList(db.Subjects, "SubjectId", "SubjectName", subject.SubjectId);
             return View(subject);
         }
 
         // POST: Subjects/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SubjectId,SubjectName,DueDates,Rubric")] Subject subject)
@@ -107,10 +115,11 @@ namespace ProjectTracker.Controllers
                 db.Save(subject);
                 return RedirectToAction("Index");
             }
-            return View(subject);
+            return View("Edit",subject);
         }
 
         // GET: Subjects/Delete/5
+       
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -127,6 +136,7 @@ namespace ProjectTracker.Controllers
         }
 
         // POST: Subjects/Delete/5
+     
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

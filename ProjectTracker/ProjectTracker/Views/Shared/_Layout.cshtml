@@ -33,16 +33,16 @@
 
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    @if (Request.IsAuthenticated)
-                    {
+                  
+                    
                         <li>@Html.ActionLink("Projects", "Index", "Projects")</li>
-                    }
-                    @if (User.IsInRole("Administrator"))
-                    {
+                    
+                   
+                    
 
                     <li>@Html.ActionLink("Subjects", "Index", "Subjects")</li>
 
-                    }
+                    
                 </ul>
                     @Html.Partial("_LoginPartial")
 </div>

@@ -24,6 +24,7 @@ namespace ProjectTracker.Controllers
             return View(projects.ToList());
         }
 
+        [AllowAnonymous]
         // GET: Projects/Details/5
         public ActionResult Details(int? id)
         {
